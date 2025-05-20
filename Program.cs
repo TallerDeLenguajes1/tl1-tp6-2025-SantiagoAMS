@@ -1,14 +1,4 @@
-﻿/*Para los ejercicios 2 y 3, cree dos branchs en su repositorio, CalculadoraV1 y 
-CalculadoraV2 
-Ejercicio 2.  Ingrese al branch CalculadoraV1 y construya un programa que sea una 
-calculadora que permita al usuario realizar las 4 operaciones básicas (Sumar, Restar, 
-Multiplicar y Dividir) a partir de un menú para seleccionar la opción a elegir y que luego 
-pida dos números y que devuelva el resultado de la operación seleccionada. Además 
-una vez que termine de realizar la operación le pregunte si desea realizar otro cálculo. */
-
-
-
-int opc = 0;
+﻿int opc = 0;
 while (opc != 5)
 {
     Console.Clear();
@@ -75,8 +65,7 @@ static void RealizarSuma()
     double a = LeerDouble("Ingresa el valor A");
     double b = LeerDouble("Ingresa el valor B");
 
-    Console.WriteLine("La suma es: " + (a + b));
-    Pausa();
+    Console.WriteLine("La suma es: " + (a + b) + "\n");
 }
 
 static void RealizarResta()
@@ -84,8 +73,7 @@ static void RealizarResta()
     double a = LeerDouble("Ingresa el valor A");
     double b = LeerDouble("Ingresa el valor B");
 
-    Console.WriteLine("La resta es: " + (a - b));
-    Pausa();
+    Console.WriteLine("La resta es: " + (a - b) + "\n");
 }
 
 static void RealizarMultiplicacion()
@@ -93,8 +81,7 @@ static void RealizarMultiplicacion()
     double a = LeerDouble("Ingresa el valor A");
     double b = LeerDouble("Ingresa el valor B");
 
-    Console.WriteLine("La multiplicacion es: " + (a * b));
-    Pausa();
+    Console.WriteLine("La multiplicacion es: " + (a * b) + "\n");
 }
 
 static void RealizarDivision()
@@ -106,9 +93,63 @@ static void RealizarDivision()
         PrintError("No se puede realizar una divicion por cero...");
         return;
     }
-    Console.WriteLine("La division es: " + (a / b));
-    Pausa();
+    Console.WriteLine("La division es: " + (a / b) + "\n");
 }
+
+//////////////////////////////////////////////////////////////////////////////////
+
+static void ValorAbsoluto()
+{
+    double n = LeerDouble();
+
+    if (n < 0)
+    {
+        n = -n;
+    }
+    Console.Write("El valor absoluto es: " + n + "\n");
+}
+
+static void Cuadrado()
+{
+    double n = LeerDouble();
+    Console.WriteLine("El cuadrado es: " + (n * n));
+}
+static void Seno()
+{
+    double n = LeerDouble();
+    Console.WriteLine("El seno es: " + Math.Sin(n));
+}
+static void Coseno()
+{
+    double n = LeerDouble();
+    Console.WriteLine("El coseno es: " + Math.Cos(n));
+}
+static void EnteroDeFloat()
+{
+    double n = LeerDouble();
+    int parteEntera = (int)n;
+}
+
+static void MayorMenor()
+{
+    double a = LeerDouble();
+    double b = LeerDouble();
+
+    double may = Math.Max(a, b);
+    double min = Math.Min(a, b);
+
+    Console.WriteLine("Maximo: " + may + "\nMinimo: " + min + "\n");
+
+}
+/*
+El valor absoluto de un número  
+● El cuadrado 
+● La raíz cuadrada  
+● El seno 
+● El Coseno  
+● La parte entera de un tipo float.  
+*/
+//////////////////////////////////////////////////////////////////////////////////
 
 static int LeerEntero(string texto = "Ingresá un número entero")
 {
