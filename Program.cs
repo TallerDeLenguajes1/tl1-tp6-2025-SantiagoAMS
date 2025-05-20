@@ -36,6 +36,8 @@ while (opc != 5)
         case 4:
             RealizarDivision();
             break;
+        case 5:
+            continue;
         default:
             PrintError();
             break;
@@ -142,8 +144,8 @@ static double LeerDouble(string texto = "Ingresá un número entero o decimal")
 
 static bool LeerBooleano(string pregunta = "")
 {
-    Console.Write(pregunta+"  [SI/YES/1 - NO/0]\n> ");
-    
+    Console.Write(pregunta + "  [SI/YES/1 - NO/0]\n> ");
+
     string s = Console.ReadLine();
     if (s is null)
     {
