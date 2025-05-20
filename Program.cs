@@ -8,7 +8,7 @@ una vez que termine de realizar la operación le pregunte si desea realizar otro
 
 
 
-int opc = 5;
+int opc = 0;
 while (opc != 5)
 {
     Console.Clear();
