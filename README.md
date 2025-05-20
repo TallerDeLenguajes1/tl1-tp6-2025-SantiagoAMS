@@ -29,4 +29,23 @@ Fuente: https://github.com/dotnet/csharplang/discussions/7394#discussion-5447347
 
 
 
-¿Qué sucede cuando utiliza el carácter @ y $ antes de una cadena de texto?
+## ¿Qué sucede cuando utiliza el carácter @ y $ antes de una cadena de texto?
+
+Si se utiliza **$** como prefijo, se podra embemer variables dentro de un string si se envuelve su nombre entre llaves {}
+Ejemplo
+```cs
+double pi = 3.14;
+Console.WriteLine($"El valor de PI es {pi}");
+```
+`Salida: "El valor de PI es 3.14"`
+Lo cual es util si vamos a mostrar muchas variables en un solo string, ademas permite darle un mejor formato.
+
+
+En cambio, si se utiliza **@** como prefijo, se interpretara cada caracter de escape como si fuera texto (quitandole su funcion).
+Ejemplo
+```cs
+double pi = 3.14;
+double e = 2.71;
+Console.WriteLine(@"\n\tEl valor de PI es " + pi + @"\n\tEl valor de E es "+e);
+```
+`Salida: "\n\tEl valor de PI es 3,14\n\tEl valor de E es 2,71"`
