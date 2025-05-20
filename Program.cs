@@ -9,6 +9,7 @@ una vez que termine de realizar la operación le pregunte si desea realizar otro
 int opc = 0;
 while (opc > 0)
 {
+    Console.Clear();
     Console.WriteLine("======================");
     Console.WriteLine("  1  -  SUMAR");
     Console.WriteLine("  2  -  RESTAR");
@@ -16,4 +17,29 @@ while (opc > 0)
     Console.WriteLine("  4  -  DIVIDIR");
     Console.WriteLine("  5  -  SALIR");
     Console.WriteLine("======================");
+
+    Console.WriteLine("Ingresa una opción");
+    Console.Write("> ");
+    string s = Console.ReadLine();
+    if (s is null)
+    {
+        PrintError();
+        continue;
+    }
+    int.TryParse(s, out opc);
+
+    if (opc <= 0)
+    {
+        PrintError("Ingresá un número...");
+        continue;
+    }
+}
+
+static void PrintError(string text = "Opcion invalida...")
+{
+    ConsoleColor old = Console.ForegroundColor;
+    Console.ForegroundColor = ConsoleColor.Red;
+    Console.WriteLine(text);
+    Console.ForegroundColor = old;
+    Console.ReadKey();
 }
