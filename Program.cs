@@ -7,6 +7,7 @@ pida dos números y que devuelva el resultado de la operación seleccionada. Ade
 una vez que termine de realizar la operación le pregunte si desea realizar otro cálculo. */
 
 int opc = 0;
+int a = 0, b = 0;
 while (opc > 0)
 {
     Console.Clear();
@@ -33,7 +34,29 @@ while (opc > 0)
         PrintError("Ingresá un número...");
         continue;
     }
+
+    switch (opc)
+    {
+        case 1:
+            RealizarSuma();
+            break;
+        case 2:
+            RealizarResta();
+            break;
+        case 3:
+            RealizarMultiplicacion();
+            break;
+        case 4:
+            RealizarDivision();
+            break;
+        case 5:
+            opc = -1;
+            break;
+    }
 }
+
+Console.ForegroundColor = ConsoleColor.Green;
+Console.ReadKey();
 
 static void PrintError(string text = "Opcion invalida...")
 {
@@ -42,4 +65,24 @@ static void PrintError(string text = "Opcion invalida...")
     Console.WriteLine(text);
     Console.ForegroundColor = old;
     Console.ReadKey();
+}
+
+static void RealizarSuma()
+{
+
+}
+
+static void RealizarResta()
+{
+
+}
+
+static void RealizarMultiplicacion()
+{
+
+}
+
+static void RealizarDivision()
+{
+
 }
