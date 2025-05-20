@@ -52,7 +52,7 @@ while (opc != 0)
             PrintError();
             break;
     }
-    Console.WriteLine("\n");
+    Console.WriteLine("");
     MayorMenor();
 
     if (!LeerBooleano("¿Realizar otra operacion?"))
@@ -144,6 +144,7 @@ static void EnteroDeFloat()
 {
     double n = LeerDouble();
     int parteEntera = (int)n;
+    Console.WriteLine("La parte entera es: " + parteEntera);
 }
 static void MayorMenor()
 {
@@ -182,7 +183,12 @@ static double LeerDouble(string texto = "Ingresá un número entero o decimal")
         Console.WriteLine(texto);
         Console.Write("> ");
         string s = Console.ReadLine();
-        if (double.TryParse(s is null ? "" : s, out ret))
+        if (s is null)
+        {
+            PrintError("Error, no ingresaste un número válido...");
+            continue;
+        }
+        if (double.TryParse(s, out ret) || double.TryParse(s.Replace(",", "."), out ret) || double.TryParse(s.Replace(".", ","), out ret))
         {
             return ret;
         }
