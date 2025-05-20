@@ -19,15 +19,7 @@ while (opc > 0)
     Console.WriteLine("  5  -  SALIR");
     Console.WriteLine("======================");
 
-    Console.WriteLine("Ingresa una opción");
-    Console.Write("> ");
-    string s = Console.ReadLine();
-    if (s is null)
-    {
-        PrintError();
-        continue;
-    }
-    int.TryParse(s, out opc);
+    opc = LeerEntero("Ingresá la opción");
 
     if (opc <= 0)
     {
@@ -69,7 +61,16 @@ static void PrintError(string text = "Opcion invalida...")
 
 static void RealizarSuma()
 {
-
+    double a = 0, b = 0;
+    Console.WriteLine("Ingresa el valor A: ");
+    Console.Write("> ");
+    string sa = Console.ReadLine();
+    if (!double.TryParse(sa, out a))
+    {
+        PrintError();
+        return;
+    }
+    
 }
 
 static void RealizarResta()
@@ -85,4 +86,20 @@ static void RealizarMultiplicacion()
 static void RealizarDivision()
 {
 
+}
+
+static int LeerEntero(string texto = "Ingresá un número")
+{
+    int ret = 0;
+    while (true)
+    {
+        Console.WriteLine(texto);
+        Console.Write("> ");
+        string s = Console.ReadLine();
+        if (int.TryParse(s is null ? "" : s, out ret))
+        {
+            return ret;
+        }
+        PrintError();
+    }
 }
