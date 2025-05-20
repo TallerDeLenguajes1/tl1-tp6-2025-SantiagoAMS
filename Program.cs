@@ -41,7 +41,7 @@ while (opc != 5)
             break;
     }
 
-    if (LeerBooleano("¿Realizar otra operacion?"))
+    if (!LeerBooleano("¿Realizar otra operacion?"))
     {
         opc = 5;
     }
