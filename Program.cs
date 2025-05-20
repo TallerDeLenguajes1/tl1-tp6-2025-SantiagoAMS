@@ -8,8 +8,8 @@ una vez que termine de realizar la operación le pregunte si desea realizar otro
 
 
 
-int opc = 0;
-while (opc >= 0)
+int opc = 5;
+while (opc != 5)
 {
     Console.Clear();
     Console.WriteLine("======================");
@@ -17,7 +17,7 @@ while (opc >= 0)
     Console.WriteLine("  2  -  RESTAR");
     Console.WriteLine("  3  -  MULTIPLICAR");
     Console.WriteLine("  4  -  DIVIDIR");
-    Console.WriteLine("  5  -  SALIR");
+    Console.WriteLine("  5  -  SALIR"); // Por si el usuario hubiera cometido un error durante la pregunta
     Console.WriteLine("======================");
 
     opc = LeerEntero("Ingresá la opción");
@@ -36,16 +36,19 @@ while (opc >= 0)
         case 4:
             RealizarDivision();
             break;
-        case 5:
-            opc = -1;
-            break;
         default:
             PrintError();
             break;
     }
+
+    if (LeerBooleano("¿Realizar otra operacion?"))
+    {
+        opc = 5;
+    }
 }
 
 Console.ForegroundColor = ConsoleColor.Green;
+Console.WriteLine("¡Nos vemos!");
 Pausa();
 
 static void Pausa()
@@ -136,6 +139,19 @@ static double LeerDouble(string texto = "Ingresá un número entero o decimal")
         }
         PrintError("Error, no ingresaste un número válido...");
     }
+}
+
+static bool LeerBooleano(string pregunta = "")
+{
+    Console.Write(pregunta+"  [SI/YES/1 - NO/0]\n> ");
+    
+    string s = Console.ReadLine();
+    if (s is null)
+    {
+        return false;
+    }
+    s = s.ToUpper();
+    return s == "SI" || s == "S" || s == "Y" || s == "YES" || s == "1";
 }
 
 
