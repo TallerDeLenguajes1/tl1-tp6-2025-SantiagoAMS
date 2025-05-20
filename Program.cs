@@ -1,5 +1,5 @@
-﻿int opc = 0;
-while (opc != 5)
+﻿int opc = -1;
+while (opc != 0)
 {
     Console.Clear();
     Console.WriteLine("======================");
@@ -7,13 +7,20 @@ while (opc != 5)
     Console.WriteLine("  2  -  RESTAR");
     Console.WriteLine("  3  -  MULTIPLICAR");
     Console.WriteLine("  4  -  DIVIDIR");
-    Console.WriteLine("  5  -  SALIR"); // Por si el usuario hubiera cometido un error durante la pregunta
+    Console.WriteLine("  5  -  VALOR ABSOLUTO");
+    Console.WriteLine("  6  -  CUADRADO");
+    Console.WriteLine("  7  -  SENO");
+    Console.WriteLine("  8  -  COSENO");
+    Console.WriteLine("  9  -  PARTE ENTERA DE UN REAL");
+    Console.WriteLine("  0  -  SALIR"); // Por si el usuario hubiera cometido un error durante la pregunta
     Console.WriteLine("======================");
 
     opc = LeerEntero("Ingresá la opción");
 
     switch (opc)
     {
+        case 0:
+            continue;
         case 1:
             RealizarSuma();
             break;
@@ -27,15 +34,30 @@ while (opc != 5)
             RealizarDivision();
             break;
         case 5:
-            continue;
+            ValorAbsoluto();
+            break;
+        case 6:
+            Cuadrado();
+            break;
+        case 7:
+            Seno();
+            break;
+        case 8:
+            Coseno();
+            break;
+        case 9:
+            EnteroDeFloat();
+            break;
         default:
             PrintError();
             break;
     }
+    Console.WriteLine("\n");
+    MayorMenor();
 
     if (!LeerBooleano("¿Realizar otra operacion?"))
     {
-        opc = 5;
+        opc = 0;
     }
 }
 
@@ -51,7 +73,6 @@ static void Pausa()
     Console.ReadKey();
     Console.ForegroundColor = old;
 }
-
 static void PrintError(string text = "Opcion invalida...")
 {
     ConsoleColor old = Console.ForegroundColor;
@@ -59,7 +80,6 @@ static void PrintError(string text = "Opcion invalida...")
     Console.WriteLine(text);
     Console.ForegroundColor = old;
 }
-
 static void RealizarSuma()
 {
     double a = LeerDouble("Ingresa el valor A");
@@ -67,7 +87,6 @@ static void RealizarSuma()
 
     Console.WriteLine("La suma es: " + (a + b) + "\n");
 }
-
 static void RealizarResta()
 {
     double a = LeerDouble("Ingresa el valor A");
@@ -75,7 +94,6 @@ static void RealizarResta()
 
     Console.WriteLine("La resta es: " + (a - b) + "\n");
 }
-
 static void RealizarMultiplicacion()
 {
     double a = LeerDouble("Ingresa el valor A");
@@ -83,7 +101,6 @@ static void RealizarMultiplicacion()
 
     Console.WriteLine("La multiplicacion es: " + (a * b) + "\n");
 }
-
 static void RealizarDivision()
 {
     double a = LeerDouble("Ingresa el valor A");
@@ -108,7 +125,6 @@ static void ValorAbsoluto()
     }
     Console.Write("El valor absoluto es: " + n + "\n");
 }
-
 static void Cuadrado()
 {
     double n = LeerDouble();
@@ -129,7 +145,6 @@ static void EnteroDeFloat()
     double n = LeerDouble();
     int parteEntera = (int)n;
 }
-
 static void MayorMenor()
 {
     double a = LeerDouble();
@@ -141,14 +156,6 @@ static void MayorMenor()
     Console.WriteLine("Maximo: " + may + "\nMinimo: " + min + "\n");
 
 }
-/*
-El valor absoluto de un número  
-● El cuadrado 
-● La raíz cuadrada  
-● El seno 
-● El Coseno  
-● La parte entera de un tipo float.  
-*/
 //////////////////////////////////////////////////////////////////////////////////
 
 static int LeerEntero(string texto = "Ingresá un número entero")
