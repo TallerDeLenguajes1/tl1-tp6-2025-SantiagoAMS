@@ -6,9 +6,10 @@ Multiplicar y Dividir) a partir de un menú para seleccionar la opción a elegir
 pida dos números y que devuelva el resultado de la operación seleccionada. Además 
 una vez que termine de realizar la operación le pregunte si desea realizar otro cálculo. */
 
+
+
 int opc = 0;
-int a = 0, b = 0;
-while (opc > 0)
+while (opc >= 0)
 {
     Console.Clear();
     Console.WriteLine("======================");
@@ -45,7 +46,16 @@ while (opc > 0)
 }
 
 Console.ForegroundColor = ConsoleColor.Green;
-Console.ReadKey();
+Pausa();
+
+static void Pausa()
+{
+    ConsoleColor old = Console.ForegroundColor;
+    Console.ForegroundColor = ConsoleColor.Yellow;
+    Console.WriteLine("Pulsa una tecla para continuar...");
+    Console.ReadKey();
+    Console.ForegroundColor = old;
+}
 
 static void PrintError(string text = "Opcion invalida...")
 {
@@ -53,7 +63,7 @@ static void PrintError(string text = "Opcion invalida...")
     Console.ForegroundColor = ConsoleColor.Red;
     Console.WriteLine(text);
     Console.ForegroundColor = old;
-    Console.ReadKey();
+    Pausa();
 }
 
 static void RealizarSuma()
@@ -62,7 +72,7 @@ static void RealizarSuma()
     double b = LeerDouble("Ingresa el valor B");
 
     Console.WriteLine("La suma es: " + (a + b));
-    Console.ReadKey();
+    Pausa();
 }
 
 static void RealizarResta()
@@ -71,7 +81,7 @@ static void RealizarResta()
     double b = LeerDouble("Ingresa el valor B");
 
     Console.WriteLine("La resta es: " + (a - b));
-    Console.ReadKey();
+    Pausa();
 }
 
 static void RealizarMultiplicacion()
@@ -80,7 +90,7 @@ static void RealizarMultiplicacion()
     double b = LeerDouble("Ingresa el valor B");
 
     Console.WriteLine("La multiplicacion es: " + (a * b));
-    Console.ReadKey();
+    Pausa();
 }
 
 static void RealizarDivision()
@@ -93,7 +103,7 @@ static void RealizarDivision()
         return;
     }
     Console.WriteLine("La division es: " + (a / b));
-    Console.ReadKey();
+    Pausa();
 }
 
 static int LeerEntero(string texto = "Ingresá un número entero")
@@ -127,3 +137,6 @@ static double LeerDouble(string texto = "Ingresá un número entero o decimal")
         PrintError("Error, no ingresaste un número válido...");
     }
 }
+
+
+
