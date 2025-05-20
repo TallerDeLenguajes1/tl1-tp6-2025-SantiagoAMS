@@ -21,12 +21,6 @@ while (opc > 0)
 
     opc = LeerEntero("Ingresá la opción");
 
-    if (opc <= 0)
-    {
-        PrintError("Ingresá un número...");
-        continue;
-    }
-
     switch (opc)
     {
         case 1:
@@ -43,6 +37,9 @@ while (opc > 0)
             break;
         case 5:
             opc = -1;
+            break;
+        default:
+            PrintError();
             break;
     }
 }
@@ -61,34 +58,45 @@ static void PrintError(string text = "Opcion invalida...")
 
 static void RealizarSuma()
 {
-    double a = 0, b = 0;
-    Console.WriteLine("Ingresa el valor A: ");
-    Console.Write("> ");
-    string sa = Console.ReadLine();
-    if (!double.TryParse(sa, out a))
-    {
-        PrintError();
-        return;
-    }
-    
+    double a = LeerDouble("Ingresa el valor A");
+    double b = LeerDouble("Ingresa el valor B");
+
+    Console.WriteLine("La suma es: " + (a + b));
+    Console.ReadKey();
 }
 
 static void RealizarResta()
 {
+    double a = LeerDouble("Ingresa el valor A");
+    double b = LeerDouble("Ingresa el valor B");
 
+    Console.WriteLine("La resta es: " + (a - b));
+    Console.ReadKey();
 }
 
 static void RealizarMultiplicacion()
 {
+    double a = LeerDouble("Ingresa el valor A");
+    double b = LeerDouble("Ingresa el valor B");
 
+    Console.WriteLine("La multiplicacion es: " + (a * b));
+    Console.ReadKey();
 }
 
 static void RealizarDivision()
 {
-
+    double a = LeerDouble("Ingresa el valor A");
+    double b = LeerDouble("Ingresa el valor B");
+    if (b == 0)
+    {
+        PrintError("No se puede realizar una divicion por cero...");
+        return;
+    }
+    Console.WriteLine("La division es: " + (a / b));
+    Console.ReadKey();
 }
 
-static int LeerEntero(string texto = "Ingresá un número")
+static int LeerEntero(string texto = "Ingresá un número entero")
 {
     int ret = 0;
     while (true)
@@ -100,6 +108,22 @@ static int LeerEntero(string texto = "Ingresá un número")
         {
             return ret;
         }
-        PrintError();
+        PrintError("Error, no ingresaste un número...");
+    }
+}
+
+static double LeerDouble(string texto = "Ingresá un número entero o decimal")
+{
+    double ret = 0;
+    while (true)
+    {
+        Console.WriteLine(texto);
+        Console.Write("> ");
+        string s = Console.ReadLine();
+        if (double.TryParse(s is null ? "" : s, out ret))
+        {
+            return ret;
+        }
+        PrintError("Error, no ingresaste un número válido...");
     }
 }
