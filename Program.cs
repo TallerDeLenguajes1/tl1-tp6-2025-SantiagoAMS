@@ -1,108 +1,83 @@
 ﻿
-int opc = -1;
-
-while (opc != 0)
-{
-    Console.WriteLine("==============================");
-    Console.WriteLine("  1 - Longitud");
-    Console.WriteLine("  2 - Longitud");
-    Console.WriteLine("  3 - Longitud");
-    Console.WriteLine("  4 - Longitud");
-    Console.WriteLine("  5 - Longitud");
-    Console.WriteLine("  6 - Longitud");
-    Console.WriteLine("  0 - Salir");
-    Console.WriteLine("==============================\n");
-
-    Console.Write("Ingresa una opción:\n> ");
-    opc = int.Parse(Console.ReadLine());
-
-    switch (opc)
-    {
-        case 1:
-            Longitud();
-            break;
-        case 2:
-            Concatenar();
-            break;
-        case 3:
-            Subcadena();
-            break;
-        case 4:
-            CadenaForeach();
-            break;
-        case 5:
-            Contiene();
-            break;
-        case 6:
-            MayMin();
-            break;
-        case 7:
-            DividirSegunCaracter();
-            break;
-        case 8:
-            Calculadora();
-            break;
-        case 9:
-            break;
-        case 0:
-            continue;
-        default:
-            break;
-    }
-
-}
-Console.Write("Ingresa una cadena: \n> ");
-string a = Console.ReadLine();
-a = a is null ? "" : a;
-
-Console.Write("Ingresa una segunda cadena: \n> ");
-string b = Console.ReadLine();
-b = b is null ? "" : b;
-
-int longitud = a.Length;
-string combinada = a + b;
-string subcadena = a.Substring(2);
-
-Console.WriteLine($"Combinada: \"{combinada}\"");
+string a = LeerString("Ingresa la cadena A");
+string b = LeerString("Ingresa la cadena B");
 
 
-static void Longitud()
+
+static void Longitud(string s)
 {
     // Obtener la longitud de la cadena y muestre por pantalla. 
 }
 
-static void Concatenar()
+static void Concatenar(string s1, string s2)
 {
     // A partir de una segunda cadena ingresada por el usuario, concatene ambas cadenas distintas. 
 }
-static void Subcadena()
+static void Subcadena(string s, int index)
 {
-    // ---● Extraer una subcadena de la cadena ingresada. 
+    // Extraer una subcadena de la cadena ingresada. 
 }
-static void CadenaForeach()
+static void CadenaForeach(string s)
 {
     // Recorrer la cadena de texto con un ciclo Foreach e ir mostrando elemento por elemento en pantalla  
 }
 
-static void Contiene()
+static void Contiene(string s, string busqueda)
 {
     // Buscar la ocurrencia de una palabra determinada en la cadena ingresada 
 }
-static void MayMin()
+static void MayMin(string s)
 {
     // Convierta la cadena a mayúsculas y luego a minúsculas. 
 }
-static void DividirSegunCaracter()
+static void DividirSegunCaracter(string s, char c)
 {
     // Ingrese una cadena separada por caracteres que usted determine y muestre por  pantalla los resultados (Revisar el comportamiento de split()) 
 }
 static void Calculadora()
 {
     /*Siguiendo con el ejemplo de la calculadora (ejercicio 2) ingrese una ecuación 
-simple como cadena de caracteres  y que el sistema lo resuelva. Por ej. ingrese 
-por pantalla “582+2” y que le devuelva la suma de 582  con 2 */
+    simple como cadena de caracteres  y que el sistema lo resuelva. Por ej. ingrese 
+    por pantalla “582+2” y que le devuelva la suma de 582  con 2 */
 }
 
+static string LeerString(string texto = "Ingresa una cadena")
+{
+    Console.Write($"\n{texto}\n> ");
+    string ret = Console.ReadLine();
+    return ret ?? "";
+}
+
+static int LeerEntero(string texto = "Ingresá un número entero")
+{
+    int ret = 0;
+    while (true)
+    {
+        Console.WriteLine(texto);
+        Console.Write("> ");
+        string s = Console.ReadLine();
+        if (int.TryParse(s is null ? "" : s, out ret))
+        {
+            return ret;
+        }
+        PrintError("Error, no ingresaste un número...");
+    }
+}
+static void Pausa()
+{
+    ConsoleColor old = Console.ForegroundColor;
+    Console.ForegroundColor = ConsoleColor.Yellow;
+    Console.WriteLine("Pulsa una tecla para continuar...");
+    Console.ReadKey();
+    Console.ForegroundColor = old;
+}
+static void PrintError(string text = "Opcion invalida...")
+{
+    ConsoleColor old = Console.ForegroundColor;
+    Console.ForegroundColor = ConsoleColor.Red;
+    Console.WriteLine(text);
+    Console.ForegroundColor = old;
+}
 
 /*
 ● Utilizando la calculadora creada anteriormente realizar las operaciones de dos 
