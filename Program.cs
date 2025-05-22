@@ -50,10 +50,31 @@ static void Contiene(string s, string busqueda)
 }
 static void MayMin(string s)
 {
+    Console.WriteLine($"Cadena original:      {s}");
+    Console.WriteLine($"Cadena en mayusculas: {s.ToUpper()}");
+    Console.WriteLine($"Cadena en minusculas: {s.ToLower()}");
     // Convierta la cadena a mayúsculas y luego a minúsculas. 
 }
 static void DividirSegunCaracter(string s, char c)
 {
+    string[] parts = s.Split(c);
+    if (parts.Length < 0)
+    {
+        PrintError($"No se ha encontrado el caracter '{c}' en la cadena \"{s}\"");
+        return;
+    }
+    int i = 0;
+
+    Console.WriteLine($"Se han encontrado {parts.Length} ocurrencias del caracter {c}, imprimiendo la división: \n");
+    foreach (string p in parts)
+    {
+        Console.Write(p);
+        if (i < parts.Length - 1)
+        {
+            Console.Write(" | ");
+        }
+        i++;
+    }
     // Ingrese una cadena separada por caracteres que usted determine y muestre por  pantalla los resultados (Revisar el comportamiento de split()) 
 }
 static int Calculadora()
