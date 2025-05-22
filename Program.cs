@@ -1,11 +1,11 @@
 ﻿
 using System.Data;
 
-string a = LeerString("Ingresa la cadena A");
-string b = LeerString("Ingresa la cadena B");
+//string a = LeerString("Ingresa la cadena A");
+//string b = LeerString("Ingresa la cadena B");
 
-
-
+int resCalc = Calculadora();
+Console.WriteLine($"Resultado: {resCalc}");
 static void Longitud(string s)
 {
     Console.WriteLine($"Longitud: {s.Length}");
@@ -88,8 +88,10 @@ static int Calculadora()
     char op = ' ';
     bool parsingFirst = true;
     bool valid = true;
+    int i = -1;
     foreach (char c in ec)
     {
+        i++;
         if (parsingFirst)
         {
             if (char.IsNumber(c))
@@ -100,6 +102,7 @@ static int Calculadora()
             {
                 op = c;
                 parsingFirst = false;
+                
             }
             else
             {
@@ -119,33 +122,30 @@ static int Calculadora()
                 break;
             }
         }
+        
+    }
+    if (ec[i] == op)// Si no se ingreso el caracter B
+    {
+        valid = false;
     }
 
     if (!valid)
     {
         throw new InvalidExpressionException("No se ha ingresado una operacion matemática válida");
     }
-    switch (op)
+    return op switch
     {
-        case '+':
-            return a + b;
-        case '-':
-            return a - b;
-        case '*':
-        case 'x':
-            return a * b;
-        case '/':
-            return a / b;
-        case '^':
-            return (int)Math.Pow(a,b);
-        case '%':
-            return a % b;
-        default:
-            return 0;
-    }
+        '+' => a + b,
+        '-' => a - b,
+        '*' or 'x' => a * b,
+        '/' => a / b,
+        '^' => (int)Math.Pow(a, b),
+        '%' => a % b,
+        _ => 0,
+    };
     /*Siguiendo con el ejemplo de la calculadora (ejercicio 2) ingrese una ecuación 
-    simple como cadena de caracteres  y que el sistema lo resuelva. Por ej. ingrese 
-    por pantalla “582+2” y que le devuelva la suma de 582  con 2 */
+simple como cadena de caracteres  y que el sistema lo resuelva. Por ej. ingrese 
+por pantalla “582+2” y que le devuelva la suma de 582  con 2 */
 }
 
 static bool EsOperando(char c)
