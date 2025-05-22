@@ -6,25 +6,47 @@ string b = LeerString("Ingresa la cadena B");
 
 static void Longitud(string s)
 {
+    Console.WriteLine($"Longitud: {s.Length}");
     // Obtener la longitud de la cadena y muestre por pantalla. 
 }
 
 static void Concatenar(string s1, string s2)
 {
+    string concat = s1 + s2;
+    Console.WriteLine($"Cadena concatenada: {concat}");
     // A partir de una segunda cadena ingresada por el usuario, concatene ambas cadenas distintas. 
 }
-static void Subcadena(string s, int index)
+static void Subcadena(string s)
 {
     // Extraer una subcadena de la cadena ingresada. 
 }
+
+static void _Subcadena(string s, int index)
+{
+    if (s.Length - 1 < index)
+    {
+        PrintError($"El indice {index} excede a la longitud de la cadena ({s.Length})");
+        return;
+    }
+    string subs = s.Substring(index);
+    Console.WriteLine($"Subcadena: {subs}");
+}
+
 static void CadenaForeach(string s)
 {
     // Recorrer la cadena de texto con un ciclo Foreach e ir mostrando elemento por elemento en pantalla  
+    Console.Write($"Dividiendo \"{s}\" en caracteres:\n\t --> ");
+    foreach (char c in s)
+    {
+        Console.Write($"'{c}' ");
+    }
 }
 
 static void Contiene(string s, string busqueda)
 {
     // Buscar la ocurrencia de una palabra determinada en la cadena ingresada 
+    Console.WriteLine($"La cadena \"{busqueda}\" {(s.Contains(busqueda)? "SI" : "NO")} esta contenida en {s}");
+    
 }
 static void MayMin(string s)
 {
@@ -34,8 +56,9 @@ static void DividirSegunCaracter(string s, char c)
 {
     // Ingrese una cadena separada por caracteres que usted determine y muestre por  pantalla los resultados (Revisar el comportamiento de split()) 
 }
-static void Calculadora()
+static int Calculadora()
 {
+
     /*Siguiendo con el ejemplo de la calculadora (ejercicio 2) ingrese una ecuación 
     simple como cadena de caracteres  y que el sistema lo resuelva. Por ej. ingrese 
     por pantalla “582+2” y que le devuelva la suma de 582  con 2 */
