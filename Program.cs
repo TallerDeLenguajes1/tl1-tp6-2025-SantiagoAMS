@@ -1,4 +1,6 @@
 ﻿
+using System.Data;
+
 string a = LeerString("Ingresa la cadena A");
 string b = LeerString("Ingresa la cadena B");
 
@@ -45,8 +47,8 @@ static void CadenaForeach(string s)
 static void Contiene(string s, string busqueda)
 {
     // Buscar la ocurrencia de una palabra determinada en la cadena ingresada 
-    Console.WriteLine($"La cadena \"{busqueda}\" {(s.Contains(busqueda)? "SI" : "NO")} esta contenida en {s}");
-    
+    Console.WriteLine($"La cadena \"{busqueda}\" {(s.Contains(busqueda) ? "SI" : "NO")} esta contenida en {s}");
+
 }
 static void MayMin(string s)
 {
@@ -80,9 +82,75 @@ static void DividirSegunCaracter(string s, char c)
 static int Calculadora()
 {
 
+    string ec = LeerString("Ingresa una operacion matematica con dos parametros (Ej \"5+7\" o \"4*4\")");
+    int a = 0;
+    int b = 0;
+    char op = ' ';
+    bool parsingFirst = true;
+    bool valid = true;
+    foreach (char c in ec)
+    {
+        if (parsingFirst)
+        {
+            if (char.IsNumber(c))
+            {
+                a = a * 10 + int.Parse(c.ToString());
+            }
+            else if (EsOperando(c))
+            {
+                op = c;
+                parsingFirst = false;
+            }
+            else
+            {
+                valid = false;
+                break;
+            }
+        }
+        else
+        {
+            if (char.IsNumber(c))
+            {
+                b = b * 10 + int.Parse(c.ToString());
+            }
+            else
+            {
+                valid = false;
+                break;
+            }
+        }
+    }
+
+    if (!valid)
+    {
+        throw new InvalidExpressionException("No se ha ingresado una operacion matemática válida");
+    }
+    switch (op)
+    {
+        case '+':
+            return a + b;
+        case '-':
+            return a - b;
+        case '*':
+        case 'x':
+            return a * b;
+        case '/':
+            return a / b;
+        case '^':
+            return (int)Math.Pow(a,b);
+        case '%':
+            return a % b;
+        default:
+            return 0;
+    }
     /*Siguiendo con el ejemplo de la calculadora (ejercicio 2) ingrese una ecuación 
     simple como cadena de caracteres  y que el sistema lo resuelva. Por ej. ingrese 
     por pantalla “582+2” y que le devuelva la suma de 582  con 2 */
+}
+
+static bool EsOperando(char c)
+{
+    return c == '+' || c == '-' || c == '*' || c == 'x' || c == '/' || c == '^' || c == '%';
 }
 
 static string LeerString(string texto = "Ingresa una cadena")
